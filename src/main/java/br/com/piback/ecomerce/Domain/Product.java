@@ -1,4 +1,4 @@
-package br.com.piback.ecomerce.domain;
+package br.com.piback.ecomerce.Domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
