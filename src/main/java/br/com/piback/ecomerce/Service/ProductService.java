@@ -34,5 +34,4 @@ public class ProductService {
         productRepository.deleteById(id);
         return new StatusResponse("Produto removido com sucesso", "sucesso");
     }
-
 }

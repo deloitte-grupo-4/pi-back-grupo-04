@@ -28,18 +28,25 @@ public class Product {
     @NotNull
     private int quantity;
 
+    @NotNull
+    private String size;
+
+    @NotNull
+    private String type;
+
 
     public Product() { }
 
-    public Product(Long id, String name, String description, String category, double price, int quantity) {
+    public Product(Long id, String name, String description, String category, double price, int quantity, String size, String type) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
         this.price = price;
         this.quantity = quantity;
+        this.size = size;
+        this.type = type;
     }
-
 
     public Long getId() {
         return id;
@@ -87,5 +94,21 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
