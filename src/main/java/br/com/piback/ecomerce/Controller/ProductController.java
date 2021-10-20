@@ -27,20 +27,19 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<StatusResponse> insertProduct(@RequestBody Product product){
-        StatusResponse statusResponse = null;
+        StatusResponse statusResponse = productService.insertProducts(product);
         return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.CREATED);
     }
 
     @DeleteMapping
-    public ResponseEntity<StatusResponse> dropProduct(@RequestBody Product product){
-        StatusResponse statusResponse = null;
+    public ResponseEntity<StatusResponse> dropProduct(@RequestHeader Long id){
+        StatusResponse statusResponse = productService.deleteProducts(id);
         return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<StatusResponse> updateProduct(@RequestBody Product product){
-        StatusResponse statusResponse = null;
+        StatusResponse statusResponse = productService.updateProducts(product);
         return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.OK);
     }
-
 }
