@@ -19,6 +19,12 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id){
+        Product product = productService.getProductById(id);
+        return new ResponseEntity<Product>(product, HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Product>> getProducts() {
         List<Product> products = productService.getProducts();
@@ -31,8 +37,8 @@ public class ProductController {
         return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.CREATED);
     }
 
-    @DeleteMapping
-    public ResponseEntity<StatusResponse> dropProduct(@RequestHeader Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<StatusResponse> dropProduct(@PathVariable("id") Long id){
         StatusResponse statusResponse = productService.deleteProducts(id);
         return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.OK);
     }
