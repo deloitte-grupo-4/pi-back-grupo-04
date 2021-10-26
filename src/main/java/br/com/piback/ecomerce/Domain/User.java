@@ -1,10 +1,10 @@
 package br.com.piback.ecomerce.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class User {
@@ -27,6 +27,10 @@ public class User {
 
     @NotNull
     private String pass;
+
+    @OneToMany (mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private List<Order> orders;
 
     public User(){}
 
@@ -85,5 +89,13 @@ public class User {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
