@@ -15,6 +15,17 @@ public class UserService {
 
     public List<User> getUsers(){ return userRepository.findAll(); }
 
+    public User login(User usuario){
+        User user = userRepository.findByEmail(usuario.getEmail()).orElseThrow(IllegalArgumentException::new);
+
+        if(user.getPass().equals(user.getPass())) {
+            return user;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public StatusResponse insertUser(User user){
         userRepository.save(user);
         return new StatusResponse("Usuario cadastrado com sucesso", "sucesso");

@@ -19,6 +19,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User usuario){
+        User user = userService.login(usuario);
+        return new ResponseEntity<User>(user, HttpStatus.ACCEPTED);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
         User user = userService.getUserById(id);
