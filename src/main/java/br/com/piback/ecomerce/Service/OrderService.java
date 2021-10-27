@@ -29,6 +29,8 @@ public class OrderService {
         return new StatusResponse("Pedido removido com sucesso", "sucesso");
     }
 
+    
+
     public Order getOrderById(Long id) {
         return orderRepository.findById(id).get();
     }

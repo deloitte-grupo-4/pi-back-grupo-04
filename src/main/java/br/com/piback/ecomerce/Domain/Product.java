@@ -15,6 +15,7 @@ public class Product {
     @NotNull
     private String name;
 
+    // Remover
     @NotNull
     private String description;
 
@@ -24,12 +25,14 @@ public class Product {
     @NotNull
     private double price;
 
+
     @NotNull
     private int quantity;
 
     @NotNull
     private String size;
 
+    // Remover
     @NotNull
     private String type;
 
