@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 //import java.time.LocalDate;
 
 @Entity
@@ -17,7 +18,6 @@ public class Order {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated = new java.sql.Date(System.currentTimeMillis());
-
 
     @ManyToOne
     @JsonIgnoreProperties("orders")
@@ -33,6 +33,13 @@ public class Order {
         this.dateCreated = dateCreated;
         this.user = user;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinTable(name = "products_orders",
+                joinColumns = { @JoinColumn(name = "product_id")},
+                inverseJoinColumns = {@JoinColumn (name="order_id")})
+    List<Product> products;
+
 
     public Long getId() {
         return id;
@@ -56,6 +63,14 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
 

@@ -1,12 +1,11 @@
 package br.com.piback.ecomerce.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -33,6 +32,10 @@ public class Product {
 
     @NotNull
     private String type;
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "products")
+
+    private List<Order> orders;
 
 
     public Product() { }
