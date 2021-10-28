@@ -1,6 +1,6 @@
-package br.com.piback.ecomerce.Repository;
+package br.com.piback.ecommerce.Repository;
 
-import br.com.piback.ecomerce.Domain.Product;
+import br.com.piback.ecommerce.Domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

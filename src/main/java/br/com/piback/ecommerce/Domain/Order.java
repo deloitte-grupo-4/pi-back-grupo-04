@@ -1,16 +1,14 @@
-package br.com.piback.ecomerce.Domain;
-
-//import com.fasterxml.jackson.annotation.JsonFormat;
+package br.com.piback.ecommerce.Domain;
+import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
-//import java.time.LocalDate;
-
+//@JsonIgnoreProperties("user")
 @Entity
-@Table(name = "tb_order")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +17,11 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated = new java.sql.Date(System.currentTimeMillis());
 
+//    @Column(name = "orderStatus", nullable = false)
+//    private int orderStatus;
+
     @ManyToOne
-    @JsonIgnoreProperties("orders")
-    @JoinColumn(name = "user_id")
-    @NotNull
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     public Order() {
@@ -32,16 +31,14 @@ public class Order {
         this.id = id;
         this.dateCreated = dateCreated;
         this.user = user;
+//        setOrderStatus(orderStatus);
     }
 
-    //@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
     @JoinTable(name = "products_orders",
-                joinColumns = { @JoinColumn(name = "product_id")},
-                inverseJoinColumns = {@JoinColumn (name="order_id")})
+                joinColumns = { @JoinColumn(name = "products_id")},
+                inverseJoinColumns = {@JoinColumn (name="orders_id")})
     List<Product> products;
-
-
 
 
     public Long getId() {
@@ -75,6 +72,14 @@ public class Order {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+//    public OrderStatus getOrderStatus() {
+//        return OrderStatus.valueOf(orderStatus);
+//    }
+//
+//    public void setOrderStatus(OrderStatus orderStatus) {
+//        this.orderStatus = orderStatus.getCode();
+//    }
 }
 
 

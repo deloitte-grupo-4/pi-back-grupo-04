@@ -1,14 +1,13 @@
-package br.com.piback.ecomerce.Controller;
+package br.com.piback.ecommerce.Controller;
 
-import br.com.piback.ecomerce.Domain.User;
-import br.com.piback.ecomerce.Domain.StatusResponse;
-import br.com.piback.ecomerce.Service.UserService;
+import br.com.piback.ecommerce.Domain.User;
+import br.com.piback.ecommerce.Domain.StatusResponse;
+import br.com.piback.ecommerce.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -38,9 +37,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<StatusResponse> insertUser(@RequestBody User user){
-        StatusResponse statusResponse = userService.insertUser(user);
-        return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.CREATED);
+    public String insertUser(@RequestBody User user) throws Exception {
+        var token = userService.insertUser(user);
+        return  token;
     }
 
     @DeleteMapping("/{id}")

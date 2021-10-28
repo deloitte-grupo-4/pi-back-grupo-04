@@ -1,10 +1,10 @@
-package br.com.piback.ecomerce;
+package br.com.piback.ecommerce;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EcomerceApplicationTests {
+class EcommerceApplicationTests {
 
 	@Test
 	void contextLoads() {

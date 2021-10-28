@@ -1,4 +1,4 @@
-package br.com.piback.ecomerce.Domain;
+package br.com.piback.ecommerce.Domain;
 
 public class StatusResponse {
 

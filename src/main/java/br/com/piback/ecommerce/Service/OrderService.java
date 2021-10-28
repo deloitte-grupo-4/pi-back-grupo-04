@@ -1,8 +1,8 @@
-package br.com.piback.ecomerce.Service;
+package br.com.piback.ecommerce.Service;
 
-import br.com.piback.ecomerce.Domain.StatusResponse;
-import br.com.piback.ecomerce.Domain.Order;
-import br.com.piback.ecomerce.Repository.OrderRepository;
+import br.com.piback.ecommerce.Domain.StatusResponse;
+import br.com.piback.ecommerce.Domain.Order;
+import br.com.piback.ecommerce.Repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class OrderService {
 
     public StatusResponse insertOrder(Order order){
         orderRepository.save(order);
-        return new StatusResponse("Pedido cadastrado com sucesso", "sucesso");
+        return new StatusResponse("Pedido criado com sucesso", "sucesso");
     }
 
     public StatusResponse updateOrder(Order newOrder){
@@ -28,8 +28,6 @@ public class OrderService {
         orderRepository.deleteById(id);
         return new StatusResponse("Pedido removido com sucesso", "sucesso");
     }
-
-    
 
     public Order getOrderById(Long id) {
         return orderRepository.findById(id).get();
