@@ -20,7 +20,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     JwtTokenProvider tokenProvider;
 
-
     public List<User> getUsers(){ return userRepository.findAll(); }
 
 

@@ -1,5 +1,6 @@
 package br.com.piback.ecommerce.Service;
 
+import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
 import br.com.piback.ecommerce.Domain.StatusResponse;
 import br.com.piback.ecommerce.Domain.Order;
 import br.com.piback.ecommerce.Repository.OrderRepository;
@@ -16,6 +17,7 @@ public class OrderService {
     public List<Order> getOrders(){ return orderRepository.findAll(); }
 
     public StatusResponse insertOrder(Order order){
+        order.setOrderStatus(OrderStatus.AGUARDANDO_PAGAMENTO);
         orderRepository.save(order);
         return new StatusResponse("Pedido criado com sucesso", "sucesso");
     }

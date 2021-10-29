@@ -1,6 +1,5 @@
 package br.com.piback.ecommerce.Domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,11 +25,11 @@ public class User implements UserDetails, Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "username")
-    private String username;
-
     @Column(name = "surname")
     private String surname;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "email")
     private String email;

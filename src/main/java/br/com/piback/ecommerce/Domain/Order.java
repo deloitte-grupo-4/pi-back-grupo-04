@@ -1,7 +1,5 @@
 package br.com.piback.ecommerce.Domain;
 import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,8 +15,8 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated = new java.sql.Date(System.currentTimeMillis());
 
-//    @Column(name = "orderStatus", nullable = false)
-//    private int orderStatus;
+    @Column(name = "orderStatus", nullable = false)
+    private int orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
@@ -27,17 +25,17 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, Date dateCreated, User user) {
+    public Order(Long id, Date dateCreated, OrderStatus orderStatus, User user) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.user = user;
-//        setOrderStatus(orderStatus);
+        setOrderStatus(orderStatus);
     }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
     @JoinTable(name = "products_orders",
-                joinColumns = { @JoinColumn(name = "products_id")},
-                inverseJoinColumns = {@JoinColumn (name="orders_id")})
+                joinColumns = { @JoinColumn(name = "orders_id")},
+                inverseJoinColumns = {@JoinColumn (name="products_id")})
     List<Product> products;
 
 
@@ -73,13 +71,13 @@ public class Order {
         this.products = products;
     }
 
-//    public OrderStatus getOrderStatus() {
-//        return OrderStatus.valueOf(orderStatus);
-//    }
-//
-//    public void setOrderStatus(OrderStatus orderStatus) {
-//        this.orderStatus = orderStatus.getCode();
-//    }
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus.getCode();
+    }
 }
 
 

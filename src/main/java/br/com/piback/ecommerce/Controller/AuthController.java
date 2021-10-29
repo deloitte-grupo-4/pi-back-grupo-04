@@ -39,6 +39,39 @@ public class AuthController {
     @Autowired
     UserService userService;
 
+    @ApiOperation("Cria um usuario com login e senha")
+    @PostMapping(value = "/criarUser",produces = "application/json", consumes = "application/json")
+    public ResponseEntity criarUser(@RequestBody User data) throws Exception {
+        try {
+            var username = data.getUsername(); //armazena Username e password
+            var password = data.getPassword();
+
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(16); //encrypta a senha
+            String result = bCryptPasswordEncoder.encode(password);
+
+            var user = repository.findByUsername(username); //busca o user no repository
+            var token = "";
+
+
+
+
+            //se o username for encontrado no repositório:
+            if(user != null) {
+                throw new UsernameNotFoundException("Username "+ username + " already exists."); // trata a exceção
+            }else {
+                data.setPassword(result);
+                token = userService.insertUser(data);
+
+                Map<Object, Object> model = new HashMap<>(); //Montando um obj para ser retornado
+                model.put("username", username); //assimilando o username
+                model.put("token", token); //assimilando o token
+                return ok(model); //retorna o model de retorno
+            }
+        } catch (Exception e){
+            throw new Exception();
+        }
+    }
+
     @ApiOperation(value = "Logar e receber um token")
     @PostMapping(value = "/logar",produces = "application/json", consumes = "application/json")
     public ResponseEntity logar(@RequestBody Credentials data) throws Exception {
@@ -63,37 +96,5 @@ public class AuthController {
         }
     }
 
-    @ApiOperation("Cria um usuario com login e senha")
-    @PostMapping(value = "/criarUser",produces = "application/json", consumes = "application/json")
-    public ResponseEntity criarUser(@RequestBody User data) throws Exception {
-        try {
-            var username = data.getUsername(); //armazena Username e password
-            var password = data.getPassword();
 
-            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(16); //encrypta a senha
-            String result = bCryptPasswordEncoder.encode(password);
-
-            var user = repository.findByUsername(username); //busca o user no repository
-            var token = "";
-
-
-
-
-            //se o username for encontrado no repositório:
-            if(user != null) {
-                throw new UsernameNotFoundException("Username "+ username + " already exists."); // trata a exceção
-            }else {
-                data.setPassword(result);
-                token = userService.insertUser(data);
-
-
-                Map<Object, Object> model = new HashMap<>(); //Montando um obj para ser retornado
-                model.put("username", username); //assimilando o username
-                model.put("token", token); //assimilando o token
-                return ok(model); //retorna o model de retorno
-            }
-        } catch (Exception e){
-            throw new Exception();
-        }
-    }
 }
