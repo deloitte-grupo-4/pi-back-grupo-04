@@ -30,8 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception{
         http.httpBasic().disable() //para desabilitar a authentication basic
+
                 .csrf().disable() //desabilita o suporte csrf , que é ligado por default (Cross-Site Request Forgery)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //não irá guardar os estados
+                //.and().cors()
                 .and()
                 .authorizeRequests() // para autorizar requisições
 

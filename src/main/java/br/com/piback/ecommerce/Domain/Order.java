@@ -36,8 +36,8 @@ public class Order {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
     @JoinTable(name = "products_orders",
-                joinColumns = { @JoinColumn(name = "products_id")},
-                inverseJoinColumns = {@JoinColumn (name="orders_id")})
+                joinColumns = { @JoinColumn(name = "orders_id")},
+                inverseJoinColumns = {@JoinColumn (name="products_id")})
     List<Product> products;
 
 
