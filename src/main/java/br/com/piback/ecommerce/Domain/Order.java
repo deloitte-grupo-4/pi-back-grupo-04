@@ -12,15 +12,22 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated = new java.sql.Date(System.currentTimeMillis());
 
-    @Column(name = "orderStatus", nullable = false)
+    @Column(name = "order_status", nullable = false)
     private int orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
+    @JoinTable(name = "products_orders",
+            joinColumns = { @JoinColumn(name = "orders_id")},
+            inverseJoinColumns = {@JoinColumn (name="products_id")})
+    List<Product> products;
 
     public Order() {
     }
@@ -31,13 +38,6 @@ public class Order {
         this.user = user;
         setOrderStatus(orderStatus);
     }
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
-    @JoinTable(name = "products_orders",
-                joinColumns = { @JoinColumn(name = "orders_id")},
-                inverseJoinColumns = {@JoinColumn (name="products_id")})
-    List<Product> products;
-
 
     public Long getId() {
         return id;

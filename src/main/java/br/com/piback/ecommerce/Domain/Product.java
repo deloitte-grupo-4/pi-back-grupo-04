@@ -23,7 +23,7 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "productSize")
+    @Column(name = "product_size")
     private Integer productSize;
 
     //implementar imagens no back
