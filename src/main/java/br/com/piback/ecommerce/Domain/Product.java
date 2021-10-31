@@ -23,23 +23,25 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "product_size")
+    @Column(name = "productSize")
     private Integer productSize;
 
-    //implementar imagens no back
+    @Column(name = "description")
+    private String description;
 
     @ManyToMany(mappedBy = "products")
     List<Order> orders;
 
     public Product() { }
 
-    public Product(Long id, String name, String category, ProductSize productSize,double price, List<Order> orders) {
+    public Product(Long id, String name, String category, ProductSize productSize, double price, String description, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
         this.orders = orders;
         setProductSize(productSize);
+        this.description = description;
     }
 
     public Long getId() {
@@ -85,7 +87,16 @@ public class Product {
     public ProductSize getProductSize() {
         return ProductSize.valueOf(productSize);
     }
+
     public void setProductSize(ProductSize productSize) {
         this.productSize = productSize.getCode();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

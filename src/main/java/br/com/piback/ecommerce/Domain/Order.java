@@ -1,5 +1,6 @@
 package br.com.piback.ecommerce.Domain;
 import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,7 +15,7 @@ public class Order {
 
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreated = new java.sql.Date(System.currentTimeMillis());
+    private java.util.Date dateCreated = new java.sql.Date(System.currentTimeMillis());
 
     @Column(name = "order_status", nullable = false)
     private int orderStatus;
