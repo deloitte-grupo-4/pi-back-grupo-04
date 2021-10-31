@@ -49,9 +49,11 @@ public class User implements UserDetails, Serializable {
     @Column(name = "enabled")
     private Boolean enabled;
 
-
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Order> orders;
+
+    @OneToMany(mappedBy = user)
+    private List<Adress> adresses = new ArrayList<>();
 
     public User(){}
 
