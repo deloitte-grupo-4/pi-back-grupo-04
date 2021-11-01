@@ -52,7 +52,8 @@ public class User implements UserDetails, Serializable {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = user)
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
     private List<Adress> adresses = new ArrayList<>();
 
     public User(){}

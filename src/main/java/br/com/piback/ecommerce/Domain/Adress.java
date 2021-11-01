@@ -1,5 +1,7 @@
 package br.com.piback.ecommerce.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Adress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnoreProperties("adresses")
     @ManyToOne
     private User user;
 
@@ -33,8 +36,5 @@ public class Adress {
 
     @Column(name = "cep")
     private String zipCode;
-
-
-
 
 }
