@@ -17,8 +17,8 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated = new java.sql.Date(System.currentTimeMillis());
 
-//    @Column(name = "orderStatus", nullable = false)
-//    private int orderStatus;
+    @Column(name = "orderStatus", nullable = false)
+    private int orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
@@ -27,11 +27,11 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, Date dateCreated, User user) {
+    public Order(Long id, Date dateCreated, User user, OrderStatus orderStatus) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.user = user;
-//        setOrderStatus(orderStatus);
+        setOrderStatus(orderStatus);
     }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
@@ -73,13 +73,13 @@ public class Order {
         this.products = products;
     }
 
-//    public OrderStatus getOrderStatus() {
-//        return OrderStatus.valueOf(orderStatus);
-//    }
-//
-//    public void setOrderStatus(OrderStatus orderStatus) {
-//        this.orderStatus = orderStatus.getCode();
-//    }
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus.getCode();
+    }
 }
 
 
