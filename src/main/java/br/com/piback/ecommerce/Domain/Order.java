@@ -24,11 +24,14 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "products_orders",
             joinColumns = { @JoinColumn(name = "orders_id")},
             inverseJoinColumns = {@JoinColumn (name="products_id")})
     List<Product> products;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
 
     public Order() {
     }
@@ -78,6 +81,14 @@ public class Order {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus.getCode();
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }
 

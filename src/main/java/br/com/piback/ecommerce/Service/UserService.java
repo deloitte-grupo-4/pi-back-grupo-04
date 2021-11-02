@@ -16,18 +16,14 @@ import java.util.List;
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     JwtTokenProvider tokenProvider;
-
     public List<User> getUsers(){ return userRepository.findAll(); }
-
 
     //Constructor
     public UserService(UserRepository repository) {
         this.userRepository = repository;
     }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var user = userRepository.findByUsername(username);
@@ -49,7 +45,6 @@ public class UserService implements UserDetailsService {
             throw new IllegalArgumentException();
         }
     }
-
 
     public String insertUser(User user) throws Exception {
         var token = tokenProvider.createToken(user.getUsername(),user.getRoles());

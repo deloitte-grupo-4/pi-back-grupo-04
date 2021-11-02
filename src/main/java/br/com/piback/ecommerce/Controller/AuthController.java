@@ -52,9 +52,6 @@ public class AuthController {
             var user = repository.findByUsername(username); //busca o user no repository
             var token = "";
 
-
-
-
             //se o username for encontrado no repositório:
             if(user != null) {
                 throw new UsernameNotFoundException("Username "+ username + " already exists."); // trata a exceção
@@ -95,6 +92,5 @@ public class AuthController {
             throw new Exception();
         }
     }
-
 
 }
