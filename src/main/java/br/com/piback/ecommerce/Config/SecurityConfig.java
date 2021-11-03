@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/order/**").denyAll()
                 *
                 * */
-                .antMatchers("/user/**", "/product/**", "/order/**","swagger-ui.html").permitAll()
+                .antMatchers("/user/**", "/product/**", "/order/**","swagger-ui.html", "/auth/**").permitAll()
                 .and()
                 .apply(new JwtConfigurer(tokenProvider)); // Aplicar as configurações
     }

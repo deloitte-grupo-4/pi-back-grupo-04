@@ -32,9 +32,6 @@ public class User implements UserDetails, Serializable {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "password")
     private String password;
 
@@ -61,7 +58,6 @@ public class User implements UserDetails, Serializable {
         this.name = name;
         this.username = username;
         this.surname = surname;
-        this.email = email;
         this.password = password;
     }
 
@@ -133,14 +129,6 @@ public class User implements UserDetails, Serializable {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public List<Order> getOrders() {
