@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User login(User usuario){
-        User user = userRepository.findByEmail(usuario.getEmail()).orElseThrow(IllegalArgumentException::new);
+        User user = userRepository.findByUsername(usuario.getUsername());
 
         if(user.getPassword().equals(user.getPassword())) {
             return user;
