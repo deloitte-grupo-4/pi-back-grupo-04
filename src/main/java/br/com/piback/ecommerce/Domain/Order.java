@@ -1,12 +1,11 @@
 package br.com.piback.ecommerce.Domain;
 import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
 import br.com.piback.ecommerce.Domain.Enums.ProductSize;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-//@JsonIgnoreProperties("user")
+
 @Entity
 @Table(name = "orders")
 public class Order {

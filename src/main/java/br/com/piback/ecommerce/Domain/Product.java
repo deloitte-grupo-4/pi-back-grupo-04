@@ -23,25 +23,23 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-
-
     @Column(name = "description")
     private String description;
+
+    @Column(name = "url_image")
+    private String url;
 
     @ManyToMany(mappedBy = "products")
     List<Order> orders;
 
-    // implementar URL imagens
-
     public Product() { }
 
-    public Product(Long id, String name, String category, double price, String description, List<Order> orders) {
-        this.id = id;
+    public Product(String name, String category, double price, String description, String url) {
         this.name = name;
         this.category = category;
         this.price = price;
-        this.orders = orders;
         this.description = description;
+        this.url = url;
     }
 
     public Long getId() {
@@ -90,5 +88,13 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
