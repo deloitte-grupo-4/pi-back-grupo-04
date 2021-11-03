@@ -51,7 +51,7 @@ public class User implements UserDetails, Serializable {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
-    private List<Adress> adresses = new ArrayList<>();
+    private List<Address> addresses = new ArrayList<>();
 
     public User(){}
 

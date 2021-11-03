@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "adress")
-public class Adress {
+@Table(name = "address")
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnoreProperties("adresses")
+    @JsonIgnoreProperties("addresses")
     @ManyToOne
     private User user;
 
@@ -37,10 +37,10 @@ public class Adress {
     @Column(name = "cep")
     private String zipCode;
 
-    public Adress() {
+    public Address() {
     }
 
-    public Adress(User user, String street, String number, String district, String complement, String city, String state, String zipCode) {
+    public Address(User user, String street, String number, String district, String complement, String city, String state, String zipCode) {
         this.user = user;
         this.street = street;
         this.number = number;
