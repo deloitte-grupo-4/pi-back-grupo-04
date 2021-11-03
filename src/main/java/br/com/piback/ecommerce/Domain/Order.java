@@ -1,5 +1,6 @@
 package br.com.piback.ecommerce.Domain;
 import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
+import br.com.piback.ecommerce.Domain.Enums.ProductSize;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
+    @Column(name = "productSize")
+    private Integer productSize;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "products_orders",
             joinColumns = { @JoinColumn(name = "orders_id")},
@@ -38,10 +42,11 @@ public class Order {
 
     // quantidade, tamanho, total da compra, ENUM Pagamento!!! <-
 
-    public Order(Long id, Date dateCreated, OrderStatus orderStatus, User user) {
+    public Order(Long id, Date dateCreated, OrderStatus orderStatus, User user, ProductSize productSize) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.user = user;
+        setProductSize(productSize);
         setOrderStatus(orderStatus);
     }
 
@@ -91,6 +96,14 @@ public class Order {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public ProductSize getProductSize() {
+        return ProductSize.valueOf(productSize);
+    }
+
+    public void setProductSize(ProductSize productSize) {
+        this.productSize = productSize.getCode();
     }
 }
 

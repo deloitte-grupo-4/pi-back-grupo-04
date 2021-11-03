@@ -23,8 +23,7 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    @Column(name = "productSize")
-    private Integer productSize;
+
 
     @Column(name = "description")
     private String description;
@@ -36,13 +35,12 @@ public class Product {
 
     public Product() { }
 
-    public Product(Long id, String name, String category, ProductSize productSize, double price, String description, List<Order> orders) {
+    public Product(Long id, String name, String category, double price, String description, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
         this.orders = orders;
-        setProductSize(productSize);
         this.description = description;
     }
 
@@ -84,14 +82,6 @@ public class Product {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public ProductSize getProductSize() {
-        return ProductSize.valueOf(productSize);
-    }
-
-    public void setProductSize(ProductSize productSize) {
-        this.productSize = productSize.getCode();
     }
 
     public String getDescription() {
