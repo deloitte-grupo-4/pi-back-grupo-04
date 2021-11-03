@@ -32,6 +32,8 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     List<Order> orders;
 
+    // implementar URL imagens
+
     public Product() { }
 
     public Product(Long id, String name, String category, ProductSize productSize, double price, String description, List<Order> orders) {

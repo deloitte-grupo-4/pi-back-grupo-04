@@ -2,7 +2,6 @@ package br.com.piback.ecommerce.Domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 
 @Entity
@@ -21,14 +20,12 @@ public class Payment implements Serializable {
     @OneToOne
     @MapsId
     private Order order;
-
-    public Payment  () {
+    public Payment () {
 
     }
     public Payment(Long id, Date moment, Order order) {
         this.id = id;
         this.moment = moment;
-        this.order = order;
     }
 
     public Long getId() {
@@ -47,11 +44,4 @@ public class Payment implements Serializable {
         this.moment = moment;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

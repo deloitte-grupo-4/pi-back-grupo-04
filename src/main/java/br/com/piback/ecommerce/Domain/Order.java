@@ -36,6 +36,8 @@ public class Order {
     public Order() {
     }
 
+    // quantidade, tamanho, total da compra, ENUM Pagamento!!! <-
+
     public Order(Long id, Date dateCreated, OrderStatus orderStatus, User user) {
         this.id = id;
         this.dateCreated = dateCreated;
