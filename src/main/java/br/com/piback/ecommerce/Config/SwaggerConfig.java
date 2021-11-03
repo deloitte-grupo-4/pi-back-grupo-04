@@ -28,8 +28,8 @@ public class SwaggerConfig {
     public ApiInfo apiInfo(){
         return new ApiInfo(
                 "E-Stampas",
-                "Grupo Integrantes",
-                "version 1",
+                "Grupo 04 - Integrantes: Arthur Alves, Bruno Grassi, Gabriela Di Poggio, Mikael de Freitas e Vailson Silva ",
+                "version 1.0",
                 "url",
                 new Contact("nome",
                         "url",

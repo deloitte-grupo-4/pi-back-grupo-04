@@ -1,6 +1,5 @@
 package br.com.piback.ecommerce.Domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,11 +25,11 @@ public class User implements UserDetails, Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "username")
-    private String username;
-
     @Column(name = "surname")
     private String surname;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
@@ -47,17 +46,20 @@ public class User implements UserDetails, Serializable {
     @Column(name = "enabled")
     private Boolean enabled;
 
-
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Order> orders;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private List<Adress> adresses = new ArrayList<>();
+
     public User(){}
 
-    public User(Long id, String name, String username, String surname, String email, String password) {
+    public User(Long id, String name, String surname, String username, String email, String password) {
         this.id = id;
         this.name = name;
-        this.username = username;
         this.surname = surname;
+        this.username = username;
         this.password = password;
     }
 

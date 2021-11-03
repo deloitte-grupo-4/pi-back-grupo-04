@@ -29,8 +29,8 @@ public class OrderController {
         Order order = orderService.getOrderById(id);
         return new ResponseEntity<Order>(order, HttpStatus.OK);
     }
-    @ApiOperation(value = "Listar os Pedidos")
 
+    @ApiOperation(value = "Listar os Pedidos")
     @GetMapping
     public ResponseEntity<List<Order>> getOrders() {
         List<Order> orders = orderService.getOrders();

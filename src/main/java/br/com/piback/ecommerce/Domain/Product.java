@@ -4,7 +4,6 @@ import br.com.piback.ecommerce.Domain.Enums.ProductSize;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 @JsonIgnoreProperties("orders")
 @Entity
@@ -24,23 +23,27 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-//    @Column(name = "productSize")
-//    private Integer productSize;
+    @Column(name = "productSize")
+    private Integer productSize;
 
-    //implementar imagens no back
+    @Column(name = "description")
+    private String description;
 
     @ManyToMany(mappedBy = "products")
     List<Order> orders;
 
+    // implementar URL imagens
+
     public Product() { }
 
-    public Product(Long id, String name, String category, double price, List<Order> orders) {
+    public Product(Long id, String name, String category, ProductSize productSize, double price, String description, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
         this.orders = orders;
-//        setProductSize(productSize);
+        setProductSize(productSize);
+        this.description = description;
     }
 
     public Long getId() {
@@ -83,11 +86,19 @@ public class Product {
         this.orders = orders;
     }
 
-//    public ProductSize getProductSize() {
-//        return ProductSize.valueOf(productSize);
-//    }
-//
-//    public void setProductSize(ProductSize productSize) {
-//        this.productSize = productSize.getCode();
-//    }
+    public ProductSize getProductSize() {
+        return ProductSize.valueOf(productSize);
+    }
+
+    public void setProductSize(ProductSize productSize) {
+        this.productSize = productSize.getCode();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
