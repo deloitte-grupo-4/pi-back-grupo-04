@@ -1,14 +1,19 @@
 package br.com.piback.ecommerce.Domain;
 import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
-import br.com.piback.ecommerce.Domain.Enums.ProductSize;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "orders")
 public class Order {
+
+    @Column (name = "address")
+    @NotNull
+    public String address;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,28 +29,22 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
-    @Column(name = "productSize")
-    private Integer productSize;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "products_orders",
             joinColumns = { @JoinColumn(name = "orders_id")},
             inverseJoinColumns = {@JoinColumn (name="products_id")})
     List<Product> products;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-    private Payment payment;
-
     public Order() {
     }
 
     // quantidade, tamanho, total da compra, ENUM Pagamento!!! <-
 
-    public Order(Long id, Date dateCreated, OrderStatus orderStatus, User user, ProductSize productSize) {
+    public Order(Long id, Date dateCreated, OrderStatus orderStatus, User user, String address) {
         this.id = id;
         this.dateCreated = dateCreated;
         this.user = user;
-        setProductSize(productSize);
+        this.address = address;
         setOrderStatus(orderStatus);
     }
 
@@ -89,20 +88,11 @@ public class Order {
         this.orderStatus = orderStatus.getCode();
     }
 
-    public Payment getPayment() {
-        return payment;
+    public String getAddress() {
+        return address;
     }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public ProductSize getProductSize() {
-        return ProductSize.valueOf(productSize);
-    }
-
-    public void setProductSize(ProductSize productSize) {
-        this.productSize = productSize.getCode();
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
 

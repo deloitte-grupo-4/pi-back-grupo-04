@@ -1,6 +1,5 @@
 package br.com.piback.ecommerce.Domain;
 
-import br.com.piback.ecommerce.Domain.Enums.ProductSize;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -31,6 +30,9 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     List<Order> orders;
+
+    @Column
+    private String size;
 
     public Product() { }
 
@@ -96,5 +98,13 @@ public class Product {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

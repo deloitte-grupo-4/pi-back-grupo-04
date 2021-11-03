@@ -85,6 +85,7 @@ public class AuthController {
                 throw new UsernameNotFoundException("Username "+ username + " not found."); // trata a exceção
             }
             Map<Object, Object> model = new HashMap<>(); //Montando um obj para ser retornado
+            model.put("userId", user.getId());
             model.put("username", username); //assimilando o username
             model.put("token", token); //assimilando o token
             return ok(model); //retorna o model de retorno
