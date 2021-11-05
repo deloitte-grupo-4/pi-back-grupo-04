@@ -47,14 +47,6 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
-// cascade = merge
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-
- 
-    @JoinTable(name = "products_orders",
-            joinColumns = { @JoinColumn(name = "orders_id")},
-            inverseJoinColumns = {@JoinColumn (name="products_id")})
-    List<Product> products;
 
     public Order() {
     }
@@ -68,7 +60,6 @@ public class Order {
         this.id = id;
         this.dateCreated = dateCreated;
         this.user = user;
-        this.products = products;
         this.total = total;
         setOrderStatus(orderStatus);
     }
