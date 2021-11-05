@@ -50,6 +50,7 @@ public class Order {
 // cascade = merge
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
+ 
     @JoinTable(name = "products_orders",
             joinColumns = { @JoinColumn(name = "orders_id")},
             inverseJoinColumns = {@JoinColumn (name="products_id")})
@@ -135,6 +136,7 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+
 
     public Double getTotal() {
         return total;

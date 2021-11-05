@@ -31,9 +31,6 @@ public class Product {
     @Column(name="size")
     private String size;
 
-    @ManyToMany(mappedBy = "products")
-    List<Order> orders;
-
     public Product() { }
 
     public Product(String name, String category, double price, String description, String url) {
@@ -76,13 +73,6 @@ public class Product {
         this.price = price;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 
     public String getDescription() {
         return description;
