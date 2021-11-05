@@ -27,11 +27,11 @@ public class Order {
     @Column(name = "productSize")
     private Integer productSize;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable(name = "products_orders",
-            joinColumns = { @JoinColumn(name = "orders_id")},
-            inverseJoinColumns = {@JoinColumn (name="products_id")})
-    List<Product> products;
+//    @ManyToone(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+//    @JoinTable(name = "products_orders",
+//            joinColumns = { @JoinColumn(name = "orders_id")},
+//            inverseJoinColumns = {@JoinColumn (name="products_id")})
+//    List<Product> products;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
@@ -73,13 +73,13 @@ public class Order {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
+//    public List<Product> getProducts() {
+//        return products;
+//    }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+    //public void setProducts(List<Product> products) {
+      //  this.products = products;
+    //}
 
     public OrderStatus getOrderStatus() {
         return OrderStatus.valueOf(orderStatus);

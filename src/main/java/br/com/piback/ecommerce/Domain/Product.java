@@ -29,8 +29,8 @@ public class Product {
     @Column(name = "url_image")
     private String url;
 
-    @ManyToMany(mappedBy = "products")
-    List<Order> orders;
+    //@ManyToMany(mappedBy = "products")
+    //List<Order> orders;
 
     public Product() { }
 
@@ -74,13 +74,13 @@ public class Product {
         this.price = price;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+//    public List<Order> getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(List<Order> orders) {
+//        this.orders = orders;
+//    }
 
     public String getDescription() {
         return description;
