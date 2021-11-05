@@ -49,10 +49,6 @@ public class User implements UserDetails, Serializable {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties("user")
-    private List<Address> addresses = new ArrayList<>();
-
     public User(){}
 
     public User(Long id, String name, String surname, String username, String email, String password) {
