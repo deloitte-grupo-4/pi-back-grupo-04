@@ -28,11 +28,11 @@ public class Product {
     @Column(name = "url_image")
     private String url;
 
+    @Column(name="size")
+    private String size;
+
     @ManyToMany(mappedBy = "products")
     List<Order> orders;
-
-    @Column
-    private String size;
 
     public Product() { }
 
