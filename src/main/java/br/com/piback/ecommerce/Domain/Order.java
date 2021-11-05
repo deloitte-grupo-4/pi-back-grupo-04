@@ -128,7 +128,6 @@ public class Order {
         this.user = user;
     }
 
-
     public Double getTotal() {
         return total;
     }

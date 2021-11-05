@@ -21,13 +21,13 @@ public class ProductItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, length = 11)
-    private int id;
+    private Long id;
 
     @Column(name = "quantity", nullable = false, length = 11)
-    private int qtdade;
+    private Integer qtdade;
 
-    @Column(name = "total_price")
-    private int totalPrice;
+    @Column(name = "size")
+    private String size;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_order", referencedColumnName = "id", nullable = false)
@@ -37,28 +37,28 @@ public class ProductItem implements Serializable {
     @JoinColumn(name = "id_product", referencedColumnName = "id", nullable = false)
     private Product product;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getQtdade() {
+    public Integer getQtdade() {
         return qtdade;
     }
 
-    public void setQtdade(int qtdade) {
+    public void setQtdade(Integer qtdade) {
         this.qtdade = qtdade;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
+    public String size() {
+        return size;
     }
 
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public Order getOrder() {
@@ -76,4 +76,5 @@ public class ProductItem implements Serializable {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }
