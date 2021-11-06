@@ -1,11 +1,14 @@
 package br.com.piback.ecommerce.Domain;
 import br.com.piback.ecommerce.Domain.Enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties("orders")
 @Table(name = "orders")
 public class Order {
 
@@ -45,8 +48,11 @@ public class Order {
     private int orderStatus;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = true)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
+    private List<ProductItem> products;
 
     public Order() {
     }
@@ -142,6 +148,14 @@ public class Order {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus.getCode();
+    }
+
+    public List<ProductItem> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductItem> product) {
+        this.products = product;
     }
 }
 

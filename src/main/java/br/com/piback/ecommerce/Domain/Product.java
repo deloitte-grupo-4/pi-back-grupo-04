@@ -3,7 +3,7 @@ package br.com.piback.ecommerce.Domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.List;
+
 @JsonIgnoreProperties("orders")
 @Entity
 @Table(name = "products")
@@ -33,11 +33,12 @@ public class Product {
 
     public Product() { }
 
-    public Product(String name, String category, double price, String description, String url) {
+    public Product(String name, String category, double price, String description, String url, String size) {
         this.name = name;
         this.category = category;
         this.price = price;
         this.description = description;
+        this.size = size;
         this.url = url;
     }
 
@@ -72,7 +73,6 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
 
     public String getDescription() {
         return description;

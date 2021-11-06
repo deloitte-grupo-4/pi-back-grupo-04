@@ -1,5 +1,6 @@
 package br.com.piback.ecommerce.Controller;
 
+import br.com.piback.ecommerce.Domain.Order;
 import br.com.piback.ecommerce.Domain.ProductItem;
 import br.com.piback.ecommerce.Domain.StatusResponse;
 import br.com.piback.ecommerce.Service.ProductItemService;
@@ -38,8 +39,8 @@ public class ProductItemController {
     }
     @ApiOperation(value = "Inserir os itens dos Produtos")
     @PostMapping
-    public ResponseEntity<StatusResponse> insertProductItem(@RequestBody ProductItem productItem){
-        StatusResponse statusResponse = productItemService.insertProductsItems(productItem);
+    public ResponseEntity<StatusResponse> insertProductItem(@RequestBody FinishOrder finishOrder){
+        StatusResponse statusResponse = productItemService.insertProductsItems(finishOrder.getProductItem(), finishOrder.getOrder());
         return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.CREATED);
     }
 
@@ -54,5 +55,27 @@ public class ProductItemController {
     public ResponseEntity<StatusResponse> updateProductItem(@RequestBody ProductItem productItem){
         StatusResponse statusResponse = productItemService.updateProductsItems(productItem);
         return new ResponseEntity<StatusResponse>(statusResponse, HttpStatus.OK);
+    }
+}
+
+class FinishOrder {
+
+    private Order order;
+    private ProductItem productItem;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public ProductItem getProductItem() {
+        return productItem;
+    }
+
+    public void setProductItem(ProductItem productItem) {
+        this.productItem = productItem;
     }
 }

@@ -1,5 +1,7 @@
 package br.com.piback.ecommerce.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
+@JsonIgnoreProperties("order")
 @Table(name = "product_item")
 public class ProductItem implements Serializable {
 
@@ -29,13 +32,30 @@ public class ProductItem implements Serializable {
     @Column(name = "size")
     private String size;
 
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id_order", referencedColumnName = "id", nullable = false)
+//    private Order order;
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_order", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_order", referencedColumnName = "id",nullable = true)
     private Order order;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_product", referencedColumnName = "id", nullable = false)
     private Product product;
+
+
+    public ProductItem() {
+    }
+
+    public ProductItem(Long id, Integer qtdade, String size, Order order, Product product) {
+        this.id = id;
+        this.qtdade = qtdade;
+        this.size = size;
+        this.order = order;
+        this.product = product;
+    }
 
     public Long getId() {
         return id;
