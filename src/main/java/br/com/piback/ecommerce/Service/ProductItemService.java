@@ -1,8 +1,8 @@
 package br.com.piback.ecommerce.Service;
 
-import br.com.piback.ecommerce.Domain.ProductItem;
+import br.com.piback.ecommerce.Domain.ProductOrder;
 import br.com.piback.ecommerce.Domain.StatusResponse;
-import br.com.piback.ecommerce.Repository.ProductItemRepository;
+import br.com.piback.ecommerce.Repository.ProductOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,27 +12,27 @@ import java.util.List;
 public class ProductItemService {
 
     @Autowired
-    private ProductItemRepository productItemRepository;
+    private ProductOrderRepository productOrderRepository;
 
-    public List<ProductItem> getProductItems(){
-        return productItemRepository.findAll();
+    public List<ProductOrder> getProductItems(){
+        return productOrderRepository.findAll();
     }
 
-    public StatusResponse insertProductsItems(ProductItem productItem){
-        productItemRepository.save(productItem);
+    public StatusResponse insertProductsItems(ProductOrder productOrder){
+        productOrderRepository.save(productOrder);
         return new StatusResponse("Item do Produto criado com sucesso", "sucesso");
     }
 
-    public StatusResponse updateProductsItems(ProductItem newProductItem){
-        productItemRepository.save(newProductItem);
+    public StatusResponse updateProductsItems(ProductOrder newProductOrder){
+        productOrderRepository.save(newProductOrder);
         return new StatusResponse("Item do Produto atualizado com sucesso", "sucesso");
     }
     public StatusResponse deleteProductItems(Long id){
-        productItemRepository.deleteById(id);
+        productOrderRepository.deleteById(id);
         return new StatusResponse("Item do Produto removido com sucesso", "sucesso");
     }
 
-    public ProductItem getProductItemById(Long id) {
-        return productItemRepository.findById(id).get();
+    public ProductOrder getProductItemById(Long id) {
+        return productOrderRepository.findById(id).get();
     }
 }

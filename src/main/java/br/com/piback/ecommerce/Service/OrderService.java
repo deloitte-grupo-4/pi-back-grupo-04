@@ -17,7 +17,6 @@ public class OrderService {
     public List<Order> getOrders(){ return orderRepository.findAll(); }
 
     public StatusResponse insertOrder(Order order){
-        order.setOrderStatus(OrderStatus.AGUARDANDO_PAGAMENTO);
         orderRepository.save(order);
         return new StatusResponse("Pedido criado com sucesso", "sucesso");
     }

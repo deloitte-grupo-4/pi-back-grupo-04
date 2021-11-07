@@ -5,9 +5,15 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
 @Table(name = "orders")
 public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, length = 11)
+    private Long id;
 
     @Column (name = "cep")
     @NotNull
@@ -33,10 +39,6 @@ public class Order {
     @NotNull
     public Double total;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date dateCreated = new java.sql.Date(System.currentTimeMillis());
@@ -48,20 +50,20 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
-    public Order() {
+    public Order(){
+
     }
 
-    public Order(String cep, String logradouro, String number, String city, String state, Long id, Date dateCreated, OrderStatus orderStatus, User user, Double total) {
+    public Order(String cep, String logradouro, String number, String city, String state, User user, Double total) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.number = number;
         this.city = city;
         this.state = state;
-        this.id = id;
-        this.dateCreated = dateCreated;
+        this.dateCreated = new java.util.Date();
         this.user = user;
         this.total = total;
-        setOrderStatus(orderStatus);
+        this.orderStatus = OrderStatus.AGUARDANDO_PAGAMENTO.getCode();
     }
 
     public String getCep() {

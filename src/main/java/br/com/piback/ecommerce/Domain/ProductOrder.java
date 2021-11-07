@@ -13,8 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "product_item")
-public class ProductItem implements Serializable {
+@Table(name = "product_order")
+public class ProductOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,6 +36,16 @@ public class ProductItem implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_product", referencedColumnName = "id", nullable = false)
     private Product product;
+
+    public ProductOrder(Product product,
+                        Order order,
+                        Integer quantity,
+                        String size){
+        this.product = product;
+        this.order = order;
+        this.qtdade = quantity;
+        this.size = size;
+    }
 
     public Long getId() {
         return id;
